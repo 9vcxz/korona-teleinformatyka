@@ -4,12 +4,47 @@
 <div class="container">
   <h2>Szczyty Korony Gór Polski</h2>
   <table class="table">
-    <tr><th>Nazwa</th><th>Wysokość</th><th>Pasmo</th></tr>
+    <tr>
+      <th>Nazwa</th>
+      <th>Wysokość</th>
+      <th>
+        <div class="d-flex justify-content-between">Pasmo
+          <form method="GET">
+            <select class="mx-3 form-select-sm" name="mountain-ranges" id="mountain-ranges">
+              <option value="all-ranges">Pokaż wszystkie</option>
+              {% for range in mountain_ranges %}
+                <option value="{{ range.pasmo }}" {% if range.pasmo == selected_range %}selected{% endif %}>{{ range.pasmo }}</option>
+              {% endfor %}
+            </select>
+            <button class="btn btn-primary" type="submit">filtruj</button>
+          </form>
+        </div>
+      </th>
+    </tr>
     {% for peak in peaks %}
-    <tr><td>{{ peak.name }}</td><td>{{ peak.height }}</td><td>{{ peak.pasmo }}</td></tr>
+      <tr>
+        <td>{{ peak.name }}
+          {% if peak.entries %}
+            <p class="my-3">
+            <ul>
+              {% for entry in peak.entries %}
+                <li>{{ entry.user.username | capitalize }} - {{ entry.date }} - {{ entry.notes }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </td><td>{{ peak.height }}</td><td>{{ peak.pasmo }}</td>
+      </tr>
     {% endfor %}
   </table>
   <a href="{{ url_for('users.user_form') }}" class="btn btn-primary">Zobacz zdobycia użytkownika</a>
   <a href="{{ url_for('user_api.user_api_form') }}" class="btn btn-info">Sprawdź zdobycia (API/fetch)</a>
 </div>
+<!-- <script>
+  const ranges = document.getElementById("mountain-ranges").children;
+  for (let i = 0; i < ranges.length; i++) {
+    console.log(ranges[i].innerHTML);
+  } 
+</script> -->
 {% endblock %}
+
+

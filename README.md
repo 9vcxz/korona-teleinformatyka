@@ -52,6 +52,7 @@ wgraj do głównego katalogu projektu plik config.py umieszczony w katalogu Semi
 sprawdz czy jest ustawiona zmeinna FLASK_APP: $env:FLASK_APP -> powinno być: migrate.py. Jeśłi nie jest to ustaw: $env:FLASK_APP = "migrate.py"
 kroki: 
 flask db init
+EDIT: flask db stamp head 
 flask db migrate -m "Inicjalna baza danych"
 flask db upgrade
 
