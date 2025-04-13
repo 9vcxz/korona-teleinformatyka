@@ -9,6 +9,8 @@
       <th>Wysokość</th>
       <th>
         <div class="d-flex justify-content-between">Pasmo
+          {# bez wtforms #}
+          {# 
           <form method="GET">
             <select class="mx-3 form-select-sm" name="mountain-ranges" id="mountain-ranges">
               <option value="all-ranges">Pokaż wszystkie</option>
@@ -16,6 +18,13 @@
                 <option value="{{ range.pasmo }}" {% if range.pasmo == selected_range %}selected{% endif %}>{{ range.pasmo }}</option>
               {% endfor %}
             </select>
+            <button class="btn btn-primary" type="submit">filtruj</button>
+          </form>
+          #}
+
+          {# z użyciem wtforms #}
+          <form method="POST">
+            {{ peaks_form.mountain_peaks_select }}
             <button class="btn btn-primary" type="submit">filtruj</button>
           </form>
         </div>

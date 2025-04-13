@@ -8,5 +8,6 @@ class UsernameForm(FlaskForm):
     username = StringField('Nazwa użytkownika', validators=[DataRequired()])
     submit = SubmitField('Sprawdź')
 
-class SelectRangeForm(FlaskForm):
-    range = SelectField('Pasmo')
+class SelectPeaksForm(FlaskForm):
+    mountain_peaks_select = SelectField('peak', choices=[])
+
