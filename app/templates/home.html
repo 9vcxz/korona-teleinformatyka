@@ -10,7 +10,7 @@
       <th>
         <div class="d-flex justify-content-between">Pasmo
           {# bez wtforms #}
-          {# 
+          {#
           <form method="GET">
             <select class="mx-3 form-select-sm" name="mountain-ranges" id="mountain-ranges">
               <option value="all-ranges">Pokaż wszystkie</option>
@@ -30,13 +30,17 @@
         </div>
       </th>
     </tr>
+    {# for loop po rekordach tabeli peak #}
     {% for peak in peaks %}
       <tr>
         <td>{{ peak.name }}
+          {# ORM - jeżeli istnieje rekord peak_entry z id peaku...#}
           {% if peak.entries %}
             <p class="my-3">
             <ul>
+              {# for loop po rekordach entries #}
               {% for entry in peak.entries %}
+                      {# ORM - peak_entry -> user.username #}
                 <li>{{ entry.user.username | capitalize }} - {{ entry.date }} - {{ entry.notes }}</li>
               {% endfor %}
             </ul>
@@ -48,12 +52,12 @@
   <a href="{{ url_for('users.user_form') }}" class="btn btn-primary">Zobacz zdobycia użytkownika</a>
   <a href="{{ url_for('user_api.user_api_form') }}" class="btn btn-info">Sprawdź zdobycia (API/fetch)</a>
 </div>
-<!-- <script>
+<script>
   const ranges = document.getElementById("mountain-ranges").children;
   for (let i = 0; i < ranges.length; i++) {
     console.log(ranges[i].innerHTML);
   } 
-</script> -->
+</script>
 {% endblock %}
 
 
